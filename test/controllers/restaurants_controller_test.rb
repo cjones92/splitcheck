@@ -55,4 +55,13 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   assert_equal(2, @restaurant.votes_for_splitting)
   
   end
+  
+  test "should add vore for not splitting" do
+  
+  get restaurants_url
+  get restaurant_url(@restaurant)
+  get downvote_url(@restaurant)
+  @restaurant.reload
+  assert_equal(2, @restaurant.votes_against_splitting)
+  end
 end
