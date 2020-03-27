@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @restaurant.location %>
+</p>
+
+<p>
+  <strong>Votes for splitting:</strong>
+  <%= @restaurant.votes_for_splitting %>
+</p>
+
+<p>
+  <strong>Votes against splitting:</strong>
+  <%= @restaurant.votes_against_splitting %>
+</p>
+
+<p>
+  <strong>Splitting average:</strong>
+  <%= @restaurant.splitting_average %>
+</p>
+
+<p>
+  <strong>Float:</strong>
+  <%= @restaurant.float %>
+</p>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>
