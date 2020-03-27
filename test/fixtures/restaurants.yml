@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  location: MyString
+  name: Outback
+  location: Atlanta, GA
   votes_for_splitting: 1
   votes_against_splitting: 1
-  splitting_average: MyString
-  float: MyString
+  splitting_average: 1.5
 
 two:
-  name: MyString
-  location: MyString
+  name: Applebee's
+  location: New York, NY
   votes_for_splitting: 1
   votes_against_splitting: 1
-  splitting_average: MyString
-  float: MyString
+  splitting_average: 1.5

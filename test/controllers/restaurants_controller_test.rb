@@ -17,7 +17,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create restaurant" do
     assert_difference('Restaurant.count') do
-      post restaurants_url, params: { restaurant: { float: @restaurant.float, location: @restaurant.location, name: @restaurant.name, splitting_average: @restaurant.splitting_average, votes_against_splitting: @restaurant.votes_against_splitting, votes_for_splitting: @restaurant.votes_for_splitting } }
+      post restaurants_url, params: { restaurant: { location: "Dilbert, OH", name: "Wally's", splitting_average: @restaurant.splitting_average, votes_against_splitting: @restaurant.votes_against_splitting, votes_for_splitting: @restaurant.votes_for_splitting } }
     end
 
     assert_redirected_to restaurant_url(Restaurant.last)
@@ -34,7 +34,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update restaurant" do
-    patch restaurant_url(@restaurant), params: { restaurant: { float: @restaurant.float, location: @restaurant.location, name: @restaurant.name, splitting_average: @restaurant.splitting_average, votes_against_splitting: @restaurant.votes_against_splitting, votes_for_splitting: @restaurant.votes_for_splitting } }
+    patch restaurant_url(@restaurant), params: { restaurant: { location: @restaurant.location, name: @restaurant.name, splitting_average: @restaurant.splitting_average, votes_against_splitting: @restaurant.votes_against_splitting, votes_for_splitting: @restaurant.votes_for_splitting } }
     assert_redirected_to restaurant_url(@restaurant)
   end
 

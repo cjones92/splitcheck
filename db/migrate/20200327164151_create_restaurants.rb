@@ -5,8 +5,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.string :location
       t.integer :votes_for_splitting
       t.integer :votes_against_splitting
-      t.string :splitting_average
-      t.string :float
+      t.float :splitting_average
 
       t.timestamps
     end

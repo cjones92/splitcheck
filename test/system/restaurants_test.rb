@@ -14,9 +14,8 @@ class RestaurantsTest < ApplicationSystemTestCase
     visit restaurants_url
     click_on "New Restaurant"
 
-    fill_in "Float", with: @restaurant.float
-    fill_in "Location", with: @restaurant.location
-    fill_in "Name", with: @restaurant.name
+    fill_in "Location", with: "Chicago"
+    fill_in "Name", with: "Applebee's"
     fill_in "Splitting average", with: @restaurant.splitting_average
     fill_in "Votes against splitting", with: @restaurant.votes_against_splitting
     fill_in "Votes for splitting", with: @restaurant.votes_for_splitting
@@ -30,9 +29,8 @@ class RestaurantsTest < ApplicationSystemTestCase
     visit restaurants_url
     click_on "Edit", match: :first
 
-    fill_in "Float", with: @restaurant.float
-    fill_in "Location", with: @restaurant.location
-    fill_in "Name", with: @restaurant.name
+    fill_in "Location", with: "New York"
+    fill_in "Name", with: "Chile's"
     fill_in "Splitting average", with: @restaurant.splitting_average
     fill_in "Votes against splitting", with: @restaurant.votes_against_splitting
     fill_in "Votes for splitting", with: @restaurant.votes_for_splitting
