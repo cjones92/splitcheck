@@ -1,0 +1,15 @@
+class Restaurant < ApplicationRecord
+
+validates_presence_of :name, :location
+
+validates_uniqueness_of :name, scope: :location, :message => 'This restaurant already exists.'
+<<<<<<< HEAD
+
+
+def self.search(name_or_location)
+  self.where("name LIKE ? OR location LIKE ?", "%#{name_or_location}%", "%#{name_or_location}%")
+end
+
+=======
+>>>>>>> 266681861eb880e750b7c696264443cbdf88e363
+end
