@@ -25,5 +25,7 @@
   <%= @restaurant.splitting_average %>
 </p>
 
+<%= link_to 'Does Split', upvote_path(@restaurant)%> |
+<%= link_to 'Does Not Split', downvote_path(@restaurant) %>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>

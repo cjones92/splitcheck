@@ -65,6 +65,12 @@ class RestaurantsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def vote_for_splitting
+     @restaurant = Restaurant.find(params[:id])
+     @restaurant.increment!(:votes_for_splitting, amount = 1)
+     redirect_to :restaurants
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

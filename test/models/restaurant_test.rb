@@ -18,4 +18,6 @@ class RestaurantTest < ActiveSupport::TestCase
   
  # assert_equal([restaurants(:three), restaurants(:two)], Restaurant.search("Chic"))
   end
+  
+  
 end
