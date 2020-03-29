@@ -69,15 +69,23 @@ class RestaurantsController < ApplicationController
   def vote_for_splitting
      @restaurant = Restaurant.find(params[:id])
      @restaurant.increment!(:votes_for_splitting, amount = 1)
+     determine_average
      redirect_to :restaurants
   end
   
   def vote_against_splitting
      @restaurant = Restaurant.find(params[:id])
      @restaurant.increment!(:votes_against_splitting, amount = 1)
+     determine_average
      redirect_to :restaurants
   end
+  
+  def determine_average
 
+@average = (Restaurant.where(id: params[:id]).pluck(:votes_for_splitting)[0].to_f / (Restaurant.where(id: params[:id]).pluck(:votes_for_splitting)[0].to_i + Restaurant.where(id: params[:id]).pluck(:votes_against_splitting)[0].to_i)) * 100
+
+@restaurant.update_column(:splitting_average, @average)
+   end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant

@@ -26,7 +26,7 @@
         <td><%= restaurant.location %></td>
         <td><%= restaurant.votes_for_splitting %></td>
         <td><%= restaurant.votes_against_splitting %></td>
-        <td><%= restaurant.splitting_average %></td>
+        <td><%= number_to_percentage(restaurant.splitting_average.to_f, precision: 2) %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         

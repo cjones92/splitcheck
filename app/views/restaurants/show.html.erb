@@ -22,7 +22,7 @@
 
 <p>
   <strong>Splitting average:</strong>
-  <%= @restaurant.splitting_average %>
+  <%= number_to_percentage(@restaurant.splitting_average, precision: 2) %>
 </p>
 
 <%= link_to 'Does Split', upvote_path(@restaurant)%> |

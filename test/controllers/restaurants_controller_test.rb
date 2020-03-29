@@ -46,22 +46,26 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to restaurants_url
   end
   
-  test "should add vote for splitting" do
+  test "should add vote for splitting and update average" do
   
   get restaurants_url
   get restaurant_url(@restaurant)
   get upvote_url(@restaurant)
+  get upvote_url(@restaurant)
   @restaurant.reload
-  assert_equal(2, @restaurant.votes_for_splitting)
+  assert_equal(3, @restaurant.votes_for_splitting)
+  assert_equal(75, @restaurant.splitting_average)
   
   end
   
-  test "should add vore for not splitting" do
+  test "should add vote for not splitting and update average" do
   
   get restaurants_url
   get restaurant_url(@restaurant)
   get downvote_url(@restaurant)
+  get downvote_url(@restaurant)
   @restaurant.reload
-  assert_equal(2, @restaurant.votes_against_splitting)
+  assert_equal(3, @restaurant.votes_against_splitting)
+  assert_equal(25, @restaurant.splitting_average)
   end
 end
