@@ -19,7 +19,7 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Create Restaurant"
 
     assert_text "Restaurant was successfully created"
-    click_on "Back"
+   
   end
 
   test "updating a Restaurant" do

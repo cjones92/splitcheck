@@ -8,6 +8,9 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.float :splitting_average
 
       t.timestamps
+      
+      change_column(:restaurants, :votes_for_splitting, 0)
+      change_column(:restaurants, :votes_against_splitting, 0)
     end
   end
 end

@@ -20,7 +20,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
       post restaurants_url, params: { restaurant: { location: "Dilbert, OH", name: "Wally's", splitting_average: @restaurant.splitting_average, votes_against_splitting: @restaurant.votes_against_splitting, votes_for_splitting: @restaurant.votes_for_splitting } }
     end
 
-    assert_redirected_to restaurant_url(Restaurant.last)
+    assert_redirected_to restaurants_url
   end
 
   test "should show restaurant" do
