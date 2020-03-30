@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SplitTheCheck</title>
+    <title>Splitthecheck</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
   </head>
 
   <body>
+  
+  <div id="container">
+  
+      <div class="header">
+      
+  <h1>Split the Check!</h1>
+  <p>Let us know which restaurants are group friendly and which ones make it hard on everyone!!!!</p>
+</div> 
+ 
     <%= yield %>
+</div>
   </body>
 </html>

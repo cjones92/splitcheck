@@ -13,3 +13,81 @@
  *= require_tree .
  *= require_self
  */
+ 
+ html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+   font-size: calc(1em + 1vw);
+}
+ .header {
+  padding: 40px;
+  padding-bottom: 0;
+  text-align: center;
+  background-image:url("restaurant.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  font-size: 30px;
+}
+
+   p {
+   padding: 25px;
+   padding-top: 0;
+  text-align: left;
+   font-size: 25px;
+  }
+
+  .display {
+
+    font-family: 'Allan';
+    padding: 60px;
+    background-image:url("restaurant.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .msg {
+  padding: 30px;
+  text-align: left;
+  font-size: 25px;
+  
+  }
+  
+  table {
+  width: 100%;
+  
+  }
+  
+  table tr.odd {
+  
+     background-color: white;
+  }
+  
+  table tr.even {
+     background-color: AliceBlue;
+  }
+  
+  #container {
+  margin: 0 auto;
+  
+  text-align: center;
+  
+  }
+  
+  textarea {
+    width: 300px;
+    height: 300px;
+  
+  }
+  
+  .field_with_errors {
+     text-align: center
+     
+   }
