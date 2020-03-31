@@ -22,8 +22,7 @@ class RestaurantsController < ApplicationController
     flash.now[:notice] = "There are #{@count} results."
         
     end
-    
-    
+   
    else
     
     @restaurants = Restaurant.all
