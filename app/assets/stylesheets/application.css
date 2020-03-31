@@ -53,6 +53,37 @@
     font-weight: bold;
   }
   
+  .splitting {
+  
+    font-family: 'Allan';
+    padding: 60px;
+    background-image:url("faces.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    object-fit: cover;
+    float: none;
+    color: black;
+    font-weight: bold;
+  
+  }
+  
+  .forsplitting {
+  
+    text-align: left;
+    float: left;
+    
+  }
+  
+  .againstsplitting {
+    text-align: right;
+    float: right;
+   
+    
+  }
+  
+  
+  
   .msg {
   padding: 30px;
   text-align: left;
@@ -78,6 +109,12 @@
   margin: 0 auto;
   
   text-align: center;
+  
+  }
+  
+  img {
+  width: 100%;
+  height: auto;
   
   }
   

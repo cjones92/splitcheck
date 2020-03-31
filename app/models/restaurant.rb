@@ -10,8 +10,4 @@ def self.search(name_or_location)
   self.where("name LIKE ? OR location LIKE ?", "%#{name_or_location}%", "%#{name_or_location}%")
 end
 
-
-
-
-
 end

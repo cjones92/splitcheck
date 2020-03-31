@@ -31,6 +31,22 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Update Restaurant"
 
     assert_text "Restaurant was successfully updated"
-    click_on "Back"
+    
   end
+  
+  test "voting for splitting" do
+    visit restaurants_url
+    click_on "View and Vote!", match: :first
+    click_on "Vote for Splitting"
+    assert_text "1"
+    end
+  
+  test "voting for not splitting" do
+    visit restaurants_url
+    click_on "View and Vote!", match: :first
+    click_on "Vote against Splitting"
+    click_on "View and Vote!", match: :first
+    click_on "Vote against Splitting"
+    assert_text "2"
+    end
 end

@@ -8,7 +8,15 @@ class RestaurantsController < ApplicationController
   if params[:search]
   
    @restaurants = Restaurant.search(params[:search])
+    if @restaurants.size == 0
+    
+    flash.now[:notice] = "No restaurants match the search criteria."
+        
+    end
+    
+    
    else
+    
     @restaurants = Restaurant.all
     end
   end
@@ -34,6 +42,8 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.save
+         @restaurant.votes_for_splitting = 0
+         @restaurant.votes_against_splitting = 0
         format.html { redirect_to '/restaurants', notice: 'Restaurant was successfully created.' }
         format.json { render :show, status: :created, location: @restaurant }
       else
@@ -48,7 +58,7 @@ class RestaurantsController < ApplicationController
   def update
     respond_to do |format|
       if @restaurant.update(restaurant_params)
-        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
+        format.html { redirect_to '/restaurants', notice: 'Restaurant was successfully updated.' }
         format.json { render :show, status: :ok, location: @restaurant }
       else
         format.html { render :edit }
@@ -95,6 +105,6 @@ class RestaurantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :location, :votes_for_splitting, :votes_against_splitting, :splitting_average)
+      params.require(:restaurant).permit(:name, :location)
     end
 end

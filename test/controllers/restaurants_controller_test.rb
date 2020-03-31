@@ -35,7 +35,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update restaurant" do
     patch restaurant_url(@restaurant), params: { restaurant: { location: @restaurant.location, name: @restaurant.name, splitting_average: @restaurant.splitting_average, votes_against_splitting: @restaurant.votes_against_splitting, votes_for_splitting: @restaurant.votes_for_splitting } }
-    assert_redirected_to restaurant_url(@restaurant)
+    assert_redirected_to restaurants_url
   end
 
   
@@ -47,8 +47,8 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   get upvote_url(@restaurant)
   get upvote_url(@restaurant)
   @restaurant.reload
-  assert_equal(3, @restaurant.votes_for_splitting)
-  assert_equal(75, @restaurant.splitting_average)
+  assert_equal(2, @restaurant.votes_for_splitting)
+  assert_equal(100, @restaurant.splitting_average)
   
   end
   
@@ -56,10 +56,12 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   
   get restaurants_url
   get restaurant_url(@restaurant)
+  get upvote_url(@restaurant)
+  get upvote_url(@restaurant)
   get downvote_url(@restaurant)
   get downvote_url(@restaurant)
   @restaurant.reload
-  assert_equal(3, @restaurant.votes_against_splitting)
-  assert_equal(25, @restaurant.splitting_average)
+  assert_equal(2, @restaurant.votes_against_splitting)
+  assert_equal(50, @restaurant.splitting_average)
   end
 end

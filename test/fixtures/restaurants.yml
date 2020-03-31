@@ -3,13 +3,13 @@
 one:
   name: Outback
   location: Atlanta, GA
-  votes_for_splitting: 1
-  votes_against_splitting: 1
-  splitting_average: 1.5
+  votes_for_splitting: 0
+  votes_against_splitting: 0
+  splitting_average: 0.0
 
 two:
   name: Applebee's
   location: New York, NY
-  votes_for_splitting: 1
-  votes_against_splitting: 1
-  splitting_average: 1.5
+  votes_for_splitting: 0
+  votes_against_splitting: 0
+  splitting_average: 0.0

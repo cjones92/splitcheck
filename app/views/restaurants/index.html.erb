@@ -2,11 +2,13 @@
 
 <h1>Restaurants</h1>
 
+<p> Search for a restaurant by name and location!</p>
 <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
 <%= submit_tag "Search" %>
 <% end %>
 
+<% if @restaurants.size > 0 %>
 <table>
   <thead>
     <tr>
@@ -20,21 +22,26 @@
   </thead>
 
   <tbody>
+   
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.location %></td>
-        <td><%= restaurant.votes_for_splitting %></td>
-        <td><%= restaurant.votes_against_splitting %></td>
-        <td><%= number_to_percentage(restaurant.splitting_average.to_f, precision: 2) %></td>
-        <td><%= link_to 'Show', restaurant %></td>
+        <td><%= restaurant.votes_for_splitting || 0 %></td>
+        <td><%= restaurant.votes_against_splitting || 0 %></td>
+        <td><%= number_to_percentage(restaurant.splitting_average.to_f, precision: 2) || 0 %></td>
+        <td><%= link_to 'View and Vote!', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         
       </tr>
     <% end %>
+   
   </tbody>
 </table>
-
+ 
+ 
+ 
+ <% end %>
 <br>
 
 <%= link_to 'New Restaurant', new_restaurant_path %>
