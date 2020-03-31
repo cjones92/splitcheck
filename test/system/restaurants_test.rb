@@ -49,4 +49,17 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Vote against Splitting"
     assert_text "2"
     end
+  
+  test "searching for restaurant" do
+    visit restaurants_url
+    fill_in :search, with: "Flurben"
+    click_on "Search"
+    assert_text "No restaurants match the search criteria"
+    fill_in :search, with: "Atlanta"
+    click_on "Search"
+    assert_text "Outback"
+  
+  
+  end
+   
 end

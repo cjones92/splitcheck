@@ -8,9 +8,18 @@ class RestaurantsController < ApplicationController
   if params[:search]
   
    @restaurants = Restaurant.search(params[:search])
+   @count = @restaurants.size
     if @restaurants.size == 0
     
     flash.now[:notice] = "No restaurants match the search criteria."
+    
+    elsif @restaurants.size == 1
+    
+    flash.now[:notice] = "There is 1 result."
+    
+    elsif @restaurants.size > 1
+    
+    flash.now[:notice] = "There are #{@count} results."
         
     end
     
@@ -77,6 +86,7 @@ class RestaurantsController < ApplicationController
     end
   end
   
+  #Casts vote for a restaurant splitting the bill and updates the average
   def vote_for_splitting
      @restaurant = Restaurant.find(params[:id])
      @restaurant.increment!(:votes_for_splitting, amount = 1)
@@ -84,6 +94,7 @@ class RestaurantsController < ApplicationController
      redirect_to :restaurants
   end
   
+  #Casts vote for restaurant not splitting the bill and updates the average
   def vote_against_splitting
      @restaurant = Restaurant.find(params[:id])
      @restaurant.increment!(:votes_against_splitting, amount = 1)
@@ -91,13 +102,17 @@ class RestaurantsController < ApplicationController
      redirect_to :restaurants
   end
   
+  
+  
+  private
+  
+  #Updates average
   def determine_average
 
-@average = (Restaurant.where(id: params[:id]).pluck(:votes_for_splitting)[0].to_f / (Restaurant.where(id: params[:id]).pluck(:votes_for_splitting)[0].to_i + Restaurant.where(id: params[:id]).pluck(:votes_against_splitting)[0].to_i)) * 100
+    @average = (Restaurant.where(id: params[:id]).pluck(:votes_for_splitting)[0].to_f / (Restaurant.where(id:            params[:id]).pluck(:votes_for_splitting)[0].to_i + Restaurant.where(id: params[:id]).pluck(:votes_against_splitting)[0].to_i)) * 100
 
 @restaurant.update_column(:splitting_average, @average)
    end
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])

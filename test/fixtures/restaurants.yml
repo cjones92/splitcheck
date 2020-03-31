@@ -13,3 +13,10 @@ two:
   votes_for_splitting: 0
   votes_against_splitting: 0
   splitting_average: 0.0
+  
+three:
+  name: Chris's
+  location: New York, NY
+  votes_for_splitting: 0
+  votes_against_splitting: 0
+  splitting_average: 0.0
