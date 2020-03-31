@@ -43,11 +43,11 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   test "should perform search" do
     get restaurants_url, params: { search: "Atlanta" }
     
-    assert_equal("There is 1 result", flash[:notice])
+    assert_equal("There is 1 result.", flash[:notice])
     
     get restaurants_url, params: { search: "New" }
     
-    assert_equal("There are 2 results", flash[:notice])
+    assert_equal("There are 2 results.", flash[:notice])
     
     get restaurants_url, params: { search: "Flurben" }
     assert_equal("No restaurants match the search criteria.", flash[:notice])
