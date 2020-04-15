@@ -4,6 +4,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @restaurants = restaurants
     @restaurant = restaurants(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -63,20 +64,10 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   get upvote_url(@restaurant)
   get upvote_url(@restaurant)
   @restaurant.reload
-  assert_equal(2, @restaurant.votes_for_splitting)
-  assert_equal(100, @restaurant.splitting_average)
+  assert_equal(2, @restaurant.votes.where(for_splitting: true).size)
+  
   
   end
   
-  test "should add vote for not splitting and update average" do
   
-  
-  get upvote_url(@restaurant)
-  get upvote_url(@restaurant)
-  get downvote_url(@restaurant)
-  get downvote_url(@restaurant)
-  @restaurant.reload
-  assert_equal(2, @restaurant.votes_against_splitting)
-  assert_equal(50, @restaurant.splitting_average)
-  end
 end

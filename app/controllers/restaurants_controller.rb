@@ -85,27 +85,15 @@ class RestaurantsController < ApplicationController
     end
   end
   
-  #Casts vote for a restaurant splitting the bill and updates the average
-  def vote_for_splitting
-     @restaurant = Restaurant.find(params[:id])
-     @restaurant.increment!(:votes_for_splitting, amount = 1)
-     determine_average
-     redirect_to :restaurants
-  end
-  
-  #Casts vote for restaurant not splitting the bill and updates the average
-  def vote_against_splitting
-     @restaurant = Restaurant.find(params[:id])
-     @restaurant.increment!(:votes_against_splitting, amount = 1)
-     determine_average
-     redirect_to :restaurants
-  end
+ 
   
   #Adds new vote for restaurant in the table created by the current user
   def vote_for_restaurant
 @restaurant = Restaurant.find(params[:id])
-@vote = @restaurant.votes.create(for_splitting:true, user: current_user)
+@user = current_user
+@vote = @restaurant.votes.create(for_splitting:true, user_id: 1)
 redirect_to :restaurants
+
 end
   
   

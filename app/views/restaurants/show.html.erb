@@ -12,18 +12,18 @@
 
 <p>
   <strong>Splitting average:</strong>
-  <%= number_to_percentage(@restaurant.splitting_average, precision: 2) || 0 %>
+  
 </p>
 
 <div class="splitting">
 <p class="forsplitting">
   <strong>Votes for splitting:</strong>
-  <%= @restaurant.votes_for_splitting || 0 %> <br><br>
+ <br><br>
   <strong>Agree? <br><br><%= link_to 'Vote for Splitting', upvote_path(@restaurant)%> </strong>   
 </p>
 <p class="againstsplitting">      
   <strong>Votes against splitting:</strong>
-  <%= @restaurant.votes_against_splitting || 0 %> <br><br>
+ 
   <strong>Agree?<br><br><%= link_to 'Vote against Splitting', downvote_path(@restaurant)%> </strong>
 </p>
 </div>
