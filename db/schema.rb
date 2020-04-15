@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_032933) do
+ActiveRecord::Schema.define(version: 2020_04_15_043043) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.integer "votes_for_splitting"
     t.integer "votes_against_splitting"
-    t.float "splitting_average"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +31,12 @@ ActiveRecord::Schema.define(version: 2020_04_15_032933) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.boolean "for_splitting"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
