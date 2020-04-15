@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :restaurants
+  
+  root to: "restaurants#index"
   
   get '/upvote/:id', to: 'restaurants#vote_for_splitting', as: 'upvote'
  get '/downvote/:id', to: 'restaurants#vote_against_splitting', as: 'downvote'
