@@ -1,6 +1,6 @@
 class Restaurant < ApplicationRecord
 has_many :votes
-has_many :restaurants, through: :votes
+has_many :users, through: :votes
 
 validates_presence_of :name, :location
 
