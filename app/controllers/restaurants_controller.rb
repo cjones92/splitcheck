@@ -90,8 +90,12 @@ class RestaurantsController < ApplicationController
   #Adds new vote for restaurant in the table created by the current user
   def vote_for_restaurant
 @restaurant = Restaurant.find(params[:id])
-@user = current_user
-@vote = @restaurant.votes.create(for_splitting:true, user_id: 1)
+
+@user = User.find(1)
+@restaurant.save!
+
+@vote = @restaurant.votes.create(for_splitting:true, user_id: @user.id)
+@vote.save!
 redirect_to :restaurants
 
 end
