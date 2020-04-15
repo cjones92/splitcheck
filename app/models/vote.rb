@@ -1,6 +1,6 @@
 class Vote < ApplicationRecord
-belongs_to :restaurants
-belongs_to :users
+belongs_to :restaurant
+belongs_to :user
 
 def self.get_splitting_votes_for_restaurant(restaurant_id)
 

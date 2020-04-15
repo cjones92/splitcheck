@@ -50,8 +50,7 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.save
-         @restaurant.votes_for_splitting = 0
-         @restaurant.votes_against_splitting = 0
+        
         format.html { redirect_to '/restaurants', notice: 'Restaurant was successfully created.' }
         format.json { render :show, status: :created, location: @restaurant }
       else
@@ -67,7 +66,7 @@ class RestaurantsController < ApplicationController
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to '/restaurants', notice: 'Restaurant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @restaurant }
+        
       else
         format.html { render :edit }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
@@ -91,10 +90,10 @@ class RestaurantsController < ApplicationController
   def vote_for_restaurant
 @restaurant = Restaurant.find(params[:id])
 
-@user = User.find(1)
+@user = current_user
 
 
-@vote = @restaurant.votes.create(for_splitting:true, user_id: @user.id)
+@vote = @restaurant.votes.create(restaurant_id: @restaurant.id, for_splitting:true, user_id: @user.id)
 
 @restaurant.save!
 redirect_to :restaurants

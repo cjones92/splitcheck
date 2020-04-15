@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class VotesControllerTest < ActionDispatch::IntegrationTest
+include Devise::Test::IntegrationHelpers
   setup do
     @vote = votes(:one)
+    @restaurant = restaurants(:one)
+    sign_in users(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -17,10 +21,10 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create vote" do
     assert_difference('Vote.count') do
-      post votes_url, params: { vote: { for_splitting: @vote.for_splitting } }
+      post votes_url, params: { vote: { for_splitting: true, restaurant_id: @restaurant.id, user_id:@user.id } }
     end
 
-    assert_redirected_to vote_url(Vote.last)
+    assert_redirected_to restaurants_url
   end
 
   test "should show vote" do
@@ -35,7 +39,7 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update vote" do
     patch vote_url(@vote), params: { vote: { for_splitting: @vote.for_splitting } }
-    assert_redirected_to vote_url(@vote)
+   assert_response :success
   end
 
   test "should destroy vote" do

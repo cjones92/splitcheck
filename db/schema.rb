@@ -10,13 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_060028) do
+ActiveRecord::Schema.define(version: 2020_04_15_184621) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.integer "votes_for_splitting"
-    t.integer "votes_against_splitting"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

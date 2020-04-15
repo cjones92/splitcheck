@@ -1,10 +1,13 @@
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionDispatch::IntegrationTest
+include Devise::Test::IntegrationHelpers
   setup do
     @restaurants = restaurants
     @restaurant = restaurants(:one)
+     sign_in users(:one)
     @user = users(:one)
+   
   end
 
   test "should get index" do
