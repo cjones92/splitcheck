@@ -99,6 +99,19 @@ class RestaurantsController < ApplicationController
 redirect_to :restaurants
 
 end
+
+  def vote_against_restaurant
+@restaurant = Restaurant.find(params[:id])
+
+@user = current_user
+
+
+@vote = @restaurant.votes.create(restaurant_id: @restaurant.id, for_splitting:false, user_id: @user.id)
+
+@restaurant.save!
+redirect_to :restaurants
+
+end
   
   
   private

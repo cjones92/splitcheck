@@ -72,5 +72,16 @@ include Devise::Test::IntegrationHelpers
   
   end
   
+  test "should add vote against splitting and update average" do
+  
+  
+  get downvote_url(@restaurant)
+  get downvote_url(@restaurant)
+  @restaurant.reload
+  assert_equal(2, @restaurant.votes.where(for_splitting: false).size)
+  
+  
+  end
+  
   
 end
