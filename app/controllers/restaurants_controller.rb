@@ -92,10 +92,11 @@ class RestaurantsController < ApplicationController
 @restaurant = Restaurant.find(params[:id])
 
 @user = User.find(1)
-@restaurant.save!
+
 
 @vote = @restaurant.votes.create(for_splitting:true, user_id: @user.id)
-@vote.save!
+
+@restaurant.save!
 redirect_to :restaurants
 
 end
