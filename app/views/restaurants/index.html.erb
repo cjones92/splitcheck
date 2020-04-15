@@ -29,7 +29,7 @@
         <td><%= restaurant.location %></td>
        <td><%= restaurant.votes.where(for_splitting: true).size %></td>
         <td><%= restaurant.votes.where(for_splitting: false).size%></td>
-        <td><%= restaurant.votes.get_average_votes_for_restaurant(restaurant.id)%></td>
+        <td><%= number_to_percentage(get_average_votes_for_restaurant(restaurant.id), precision: 2)%></td>
         <td><%= link_to 'Show', restaurant %></td>        
         <td><%= link_to 'View and Vote!', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>

@@ -112,17 +112,31 @@ end
 redirect_to :restaurants
 
 end
+
+def get_average_votes_for_restaurant(restaurant_id)
+ 
+@restaurant = Restaurant.find(restaurant_id)
+@average = 0
+
+@yes = @restaurant.votes.where(for_splitting: true).size
+@no = @restaurant.votes.where(for_splitting: false).size
+if (@yes + @no) > 0
+@average = (@yes.to_f / (@yes.to_f + @no.to_f)) * 100
+else
+@average = 0
+end
+@average
+end
+helper_method :get_average_votes_for_restaurant
   
   
   private
   
   #Updates average
-  def determine_average
+ 
 
-    @average = (Restaurant.where(id: params[:id]).pluck(:votes_for_splitting)[0].to_f / (Restaurant.where(id:            params[:id]).pluck(:votes_for_splitting)[0].to_i + Restaurant.where(id: params[:id]).pluck(:votes_against_splitting)[0].to_i)) * 100
-
-@restaurant.update_column(:splitting_average, @average)
-   end
+ 
+   
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
