@@ -101,6 +101,12 @@ class RestaurantsController < ApplicationController
      redirect_to :restaurants
   end
   
+  #Adds new vote for restaurant in the table created by the current user
+  def vote_for_restaurant
+@restaurant = Restaurant.find(params[:id])
+@vote = @restaurant.votes.create(for_splitting:true, user: current_user)
+redirect_to :restaurants
+end
   
   
   private

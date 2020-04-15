@@ -29,7 +29,10 @@
         <td><%= restaurant.location %></td>
         <td><%= restaurant.votes_for_splitting || 0 %></td>
         <td><%= restaurant.votes_against_splitting || 0 %></td>
-        <td><%= number_to_percentage(restaurant.splitting_average.to_f, precision: 2) || 0 %></td>
+       <td><%= restaurant.votes.where(for_splitting: true).size %></td>
+        <td><%= restaurant.votes.get_against_splitting_votes_for_restaurant(restaurant.id)%></td>
+        <td><%= restaurant.votes.get_average_votes_for_restaurant(restaurant.id)%></td>
+        <td><%= link_to 'Show', restaurant %></td>        
         <td><%= link_to 'View and Vote!', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         
@@ -43,8 +46,5 @@
  
  <% end %>
 <br>
-<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-else
-<%= link_to "Sign In", new_user_session_path %>
-<%= link_to  "Sign Up", new_user_registration_path %>
+
 <%= link_to 'New Restaurant', new_restaurant_path %>

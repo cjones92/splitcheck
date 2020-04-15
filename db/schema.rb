@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_043043) do
+ActiveRecord::Schema.define(version: 2020_04_15_060028) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 2020_04_15_043043) do
     t.integer "votes_against_splitting"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "table_relationships", force: :cascade do |t|
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +40,10 @@ ActiveRecord::Schema.define(version: 2020_04_15_043043) do
     t.boolean "for_splitting"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "restaurant_id"
+    t.integer "user_id"
+    t.index ["restaurant_id"], name: "index_votes_on_restaurant_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end
