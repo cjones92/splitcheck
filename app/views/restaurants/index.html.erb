@@ -30,9 +30,11 @@
        <td><%= restaurant.votes.where(for_splitting: true).size %></td>
         <td><%= restaurant.votes.where(for_splitting: false).size%></td>
         <td><%= number_to_percentage(get_average_votes_for_restaurant(restaurant.id), precision: 2)%></td>
-        <td><%= link_to 'Show', restaurant %></td>        
         <td><%= link_to 'View and Vote!', restaurant %></td>
+       <% if current_user %>
+        
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <% end %>
         
       </tr>
     <% end %>
@@ -46,7 +48,7 @@
 <br>
 
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-else
+
 <%= link_to "Sign In", new_user_session_path %>
 <%= link_to  "Sign Up", new_user_registration_path %>
 
