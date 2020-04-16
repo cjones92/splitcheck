@@ -10,27 +10,7 @@ class VotesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Votes"
   end
 
-  test "creating a Vote" do
-    visit votes_url
-    click_on "New Vote"
-
-    check "For splitting" if @vote.for_splitting
-    click_on "Create Vote"
-
-    assert_text "Vote was successfully created"
-    click_on "Back"
-  end
-
-  test "updating a Vote" do
-    visit votes_url
-    click_on "Edit", match: :first
-
-    check "For splitting" if @vote.for_splitting
-    click_on "Update Vote"
-
-    assert_text "Vote was successfully updated"
-    click_on "Back"
-  end
+ 
 
   test "destroying a Vote" do
     visit votes_url

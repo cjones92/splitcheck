@@ -12,6 +12,17 @@ class RestaurantsTest < ApplicationSystemTestCase
 
   test "creating a Restaurant" do
     visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "sallyannalynn@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
+    click_on "Sign Out"
+    click_on "Sign In"
+    fill_in "Email", with: "sallyannalynn@gmail.com"
+    fill_in "Password", with: "cheeses"
+    click_on "Log in"
+    
     click_on "New Restaurant"
 
     fill_in "Location", with: "Chicago"
@@ -24,6 +35,16 @@ class RestaurantsTest < ApplicationSystemTestCase
 
   test "updating a Restaurant" do
     visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "sallyannalynnel@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
+    click_on "Sign Out"
+    click_on "Sign In"
+    fill_in "Email", with: "sallyannalynnel@gmail.com"
+    fill_in "Password", with: "cheeses"
+    click_on "Log in"
     click_on "Edit", match: :first
 
     fill_in "Location", with: "New York"
@@ -36,13 +57,24 @@ class RestaurantsTest < ApplicationSystemTestCase
   
   test "voting for splitting" do
     visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "sallyannalynn@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
     click_on "View and Vote!", match: :first
     click_on "Vote for Splitting"
     assert_text "1"
     end
   
   test "voting for not splitting" do
+  
     visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "annabanana@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
     click_on "View and Vote!", match: :first
     click_on "Vote against Splitting"
     click_on "View and Vote!", match: :first

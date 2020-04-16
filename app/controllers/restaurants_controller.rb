@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :redirect_user, only: [:destroy]
-  before_action :authenticate_user!, only: [:edit, :vote_for_restaurant, :vote_against_restaurant]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :vote_for_restaurant, :vote_against_restaurant]
 
   # GET /restaurants
   # GET /restaurants.json
