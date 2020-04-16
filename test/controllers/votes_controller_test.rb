@@ -19,13 +19,23 @@ include Devise::Test::IntegrationHelpers
     assert_response :success
   end
 
-  test "should create vote" do
+  test "should create vote when logged in" do
     assert_difference('Vote.count') do
       post votes_url, params: { vote: { for_splitting: true, restaurant_id: @restaurant.id, user_id:@user.id } }
     end
 
     assert_redirected_to restaurants_url
   end
+  
+  test "should not create vote when user not logged in" do
+    sign_out @user
+    assert_no_difference('Vote.count') do
+    
+      post votes_url, params: { vote: { for_splitting: true, restaurant_id: @restaurant.id, user_id:@user.id } }
+    end
+
+    assert_redirected_to new_user_session_path
+    end
 
   test "should show vote" do
     get vote_url(@vote)

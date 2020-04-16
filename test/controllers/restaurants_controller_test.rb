@@ -21,12 +21,21 @@ include Devise::Test::IntegrationHelpers
     assert_response :success
   end
 
-  test "should create restaurant" do
+  test "should create restaurant when logged in" do
     assert_difference('Restaurant.count') do
       post restaurants_url, params: { restaurant: { location: "Dilbert, OH", name: "Wally's" } }
     end
 
     assert_redirected_to restaurants_url
+  end
+  
+  test "should not create restaurant when logged out" do
+    sign_out @user
+    assert_no_difference('Restaurant.count') do
+      post restaurants_url, params: { restaurant: { location: "Dilbert, OH", name: "Wally's" } }
+    end
+
+    assert_redirected_to new_user_session_path
   end
 
   test "should show restaurant" do
@@ -34,15 +43,23 @@ include Devise::Test::IntegrationHelpers
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit when logged in" do
     get edit_restaurant_url(@restaurant)
     assert_response :success
   end
+  
+  test "should not get edit when not logged in" do
+  sign_out @user
+    get edit_restaurant_url(@restaurant)
+    assert_redirected_to new_user_session_path
+  end
 
-  test "should update restaurant" do
+  test "should update restaurant when logged in" do
     patch restaurant_url(@restaurant), params: { restaurant: { location: @restaurant.location, name: @restaurant.name } }
     assert_redirected_to restaurants_url
   end
+  
+  
   
   test "should perform search" do
     get restaurants_url, params: { search: "Atlanta" }
