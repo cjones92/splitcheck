@@ -9,6 +9,10 @@ class RestaurantsTest < ApplicationSystemTestCase
     visit restaurants_url
     assert_selector "h1", text: "Restaurants"
   end
+  
+  
+  
+  
 
   test "creating a Restaurant" do
     visit restaurants_url
