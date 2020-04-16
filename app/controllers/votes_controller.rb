@@ -1,25 +1,29 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_user, only: [:edit, :destroy]
   before_action :authenticate_user!, only: [:create]
 
   # GET /votes
   # GET /votes.json
   def index
-    @votes = Vote.all
+    redirect_to root_path
   end
 
   # GET /votes/1
   # GET /votes/1.json
   def show
+  redirect_to root_path
   end
 
   # GET /votes/new
   def new
     @vote = Vote.new
+  
   end
 
   # GET /votes/1/edit
   def edit
+  redirect_to root_path
   end
 
   # POST /votes
@@ -66,6 +70,10 @@ class VotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
       @vote = Vote.find(params[:id])
+    end
+    
+    def redirect_user
+       redirect_to root_path
     end
 
     # Only allow a list of trusted parameters through.

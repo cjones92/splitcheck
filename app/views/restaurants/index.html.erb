@@ -27,8 +27,8 @@
       <tr>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.location %></td>
-       <td><%= restaurant.votes.where(for_splitting: true).size %></td>
-        <td><%= restaurant.votes.where(for_splitting: false).size%></td>
+       <td><%= restaurant.votes.get_votes_for_splitting %></td>
+        <td><%= restaurant.votes.get_votes_against_splitting%></td>
         <td><%= number_to_percentage(get_average_votes_for_restaurant(restaurant.id), precision: 2)%></td>
         <td><%= link_to 'View and Vote!', restaurant %></td>
        <% if current_user %>

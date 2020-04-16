@@ -11,7 +11,7 @@ include Devise::Test::IntegrationHelpers
 
   test "should get index" do
     get votes_url
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   test "should get new" do
@@ -39,12 +39,12 @@ include Devise::Test::IntegrationHelpers
 
   test "should show vote" do
     get vote_url(@vote)
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   test "should get edit" do
     get edit_vote_url(@vote)
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   test "should update vote" do
@@ -53,10 +53,10 @@ include Devise::Test::IntegrationHelpers
   end
 
   test "should destroy vote" do
-    assert_difference('Vote.count', -1) do
+    assert_no_difference('Vote.count') do
       delete vote_url(@vote)
+      end
+      
     end
 
-    assert_redirected_to votes_url
-  end
 end

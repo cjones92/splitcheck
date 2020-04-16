@@ -87,48 +87,44 @@ class RestaurantsController < ApplicationController
   
  
   
-  #Adds new vote for restaurant in the table created by the current user
+  #Adds new vote for restaurant splitting the check
   def vote_for_restaurant
-@restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
+    @user = current_user
 
-@user = current_user
+    @vote = @restaurant.votes.create(restaurant_id: @restaurant.id, for_splitting:true, user_id: @user.id)
 
-
-@vote = @restaurant.votes.create(restaurant_id: @restaurant.id, for_splitting:true, user_id: @user.id)
-
-@restaurant.save!
-redirect_to :restaurants
-
-end
-
+    @restaurant.save!
+    redirect_to :restaurants
+  end
+  
+  #Adds new vote for restaurant not splitting the check
   def vote_against_restaurant
-@restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
+    @user = current_user
 
-@user = current_user
+    @vote = @restaurant.votes.create(restaurant_id: @restaurant.id, for_splitting:false, user_id: @user.id)
 
+    @restaurant.save!
+    redirect_to :restaurants
+  end
 
-@vote = @restaurant.votes.create(restaurant_id: @restaurant.id, for_splitting:false, user_id: @user.id)
+  #Determines average amount users vote yes on splitting for a restaurant
+  def get_average_votes_for_restaurant(restaurant_id)
+    @restaurant = Restaurant.find(restaurant_id)
+    @average = 0
 
-@restaurant.save!
-redirect_to :restaurants
-
-end
-
-def get_average_votes_for_restaurant(restaurant_id)
- 
-@restaurant = Restaurant.find(restaurant_id)
-@average = 0
-
-@yes = @restaurant.votes.where(for_splitting: true).size
-@no = @restaurant.votes.where(for_splitting: false).size
-if (@yes + @no) > 0
-@average = (@yes.to_f / (@yes.to_f + @no.to_f)) * 100
-else
-@average = 0
-end
-@average
-end
-helper_method :get_average_votes_for_restaurant
+    @yes = @restaurant.votes.where(for_splitting: true).size
+    @no = @restaurant.votes.where(for_splitting: false).size
+    
+    if (@yes + @no) > 0
+      @average = (@yes.to_f / (@yes.to_f + @no.to_f)) * 100
+    else
+      @average = 0
+    end
+    @average
+   end
+   helper_method :get_average_votes_for_restaurant
   
   
   private

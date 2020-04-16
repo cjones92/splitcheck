@@ -6,6 +6,6 @@ one:
   user_id: 1
 
 two:
-  for_splitting: true
+  for_splitting: false
   restaurant_id: 2
   user_id: 1
