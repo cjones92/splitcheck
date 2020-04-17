@@ -32,9 +32,9 @@
  
   <strong>Agree?<br><br>
    <% if current_user %>
-  <%= link_to 'Vote against Splitting', downvote_path(@restaurant)%> 
+     <%= link_to 'Vote against Splitting', downvote_path(@restaurant)%> 
    <% else %>
-  <%= link_to 'Log in to vote!', new_user_session_path %>
+     <%= link_to 'Log in to vote!', new_user_session_path %>
   </strong>
   <% end %>
 </p>
