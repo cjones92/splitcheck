@@ -45,9 +45,7 @@ test "registering a user" do
     assert_text "Signed in successfully."
   
   end
-
-
-
-
+  
+ 
 
 end
