@@ -80,8 +80,8 @@ include Devise::Test::IntegrationHelpers
   
   test "should add vote for splitting" do
   
-     get upvote_url(@restaurant)
-     get upvote_url(@restaurant)
+     get upvote_url(@restaurant, @user.id)
+     get upvote_url(@restaurant, @user.id)
      @restaurant.reload
      assert_equal(2, @restaurant.votes.where(for_splitting: true).size)
      
@@ -89,8 +89,8 @@ include Devise::Test::IntegrationHelpers
   
   test "should add vote against splitting" do
   
-     get downvote_url(@restaurant)
-     get downvote_url(@restaurant)
+     get downvote_url(@restaurant, @user.id)
+     get downvote_url(@restaurant, @user.id)
      @restaurant.reload
      assert_equal(2, @restaurant.votes.where(for_splitting: false).size)
   
