@@ -1,8 +1,10 @@
 class Restaurant < ApplicationRecord
 has_many :votes
 has_many :favorites
+has_many :comments
 has_many :users, through: :votes
 has_many :users, through: :favorites
+has_many :users, through: :comments
 
 validates_presence_of :name, :location
 

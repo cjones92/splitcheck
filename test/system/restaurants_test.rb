@@ -98,7 +98,7 @@ class RestaurantsTest < ApplicationSystemTestCase
   
   end
   
-  test "favoritine a restaurant" do
+  test "favoriting a restaurant" do
    
   
     visit restaurants_url
