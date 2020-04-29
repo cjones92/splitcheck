@@ -1,4 +1,4 @@
-<h1>User Summary</h1>
+<h1>User Summary For <%= current_user.email %></h1>
 
 <div class="forsplitting">
 <h2>Favorites</h2>
@@ -12,10 +12,10 @@
   </thead>
 
   <tbody>
-   
+   link_to @ripple.name, "#{@ripple.url}"
     <% current_user.favorites.each do |favorite| %>
       <tr>
-        <td><%= Restaurant.find_by(id: favorite.restaurant_id).name %></td>
+        <td><%= link_to Restaurant.find_by(id: favorite.restaurant_id).name, restaurant_url(favorite.restaurant)%></td>
         <td><%= Restaurant.find_by(id: favorite.restaurant_id).location %></td>
        
         
@@ -42,7 +42,8 @@
     <% current_user.comments.each do |comment| %>
       <tr>
         <td><%= comment.comment %></td>
-        <td><%= Restaurant.find_by(id: comment.restaurant_id).name %></td>
+        <td><%= link_to Restaurant.find_by(id: comment.restaurant_id).name, restaurant_url(comment.restaurant) %></td>
+        <td><%= Restaurant.find_by(id: comment.restaurant_id).location %></td>
        
         
       </tr>
@@ -58,6 +59,7 @@
       
       <th>Vote</th>
       <th>Restaurant</th>
+      <th>Location</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -66,8 +68,13 @@
    
     <% current_user.votes.each do |vote| %>
       <tr>
-        <td><%= vote.for_splitting %></td>
-        <td><%= Restaurant.find_by(id: vote.restaurant_id).name %></td>
+         <% if vote.for_splitting == true %>
+         <td>They split!</td>
+         <% else %>
+        <td>They don't split!</td>
+         <% end %>
+        <td><%= link_to Restaurant.find_by(id: vote.restaurant_id).name, restaurant_url(vote.restaurant) %></td>
+        <td><%= Restaurant.find_by(id: vote.restaurant_id).location %></td>
        
         
       </tr>
