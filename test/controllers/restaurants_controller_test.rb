@@ -108,5 +108,13 @@ include Devise::Test::IntegrationHelpers
   
   end
   
+  test "should create favorite for restaurant" do
+       get restaurants_url
+       get restaurant_url(@restaurant)
+       get pick_path(@restaurant.id)
+       assert_equal(1, @user.favorites.where(restaurant_id: @restaurant.id).size)
+  
+  end
+  
   
 end

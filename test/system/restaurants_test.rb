@@ -13,6 +13,7 @@ class RestaurantsTest < ApplicationSystemTestCase
   
   
   
+  
 
   test "creating a Restaurant" do
     visit restaurants_url
@@ -95,6 +96,21 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Search"
     assert_text "Outback"
   
+  end
+  
+  test "favoritine a restaurant" do
+   
+  
+    visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "annabanana@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
+    click_on "View and Vote!", match: :first
+    click_on "Favorite This Restaurant"
+    assert_text "You have favorited this restaurant"
+    
   
   end
    

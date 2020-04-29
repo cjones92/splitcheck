@@ -133,7 +133,7 @@ class RestaurantsController < ApplicationController
     @vote = @restaurant.favorites.create(restaurant_id: @restaurant.id, user_id: @user.id)
 
     @restaurant.save!
-    redirect_to request.referer
+    redirect_to @restaurant
   
   end
   

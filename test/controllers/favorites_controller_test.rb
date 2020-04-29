@@ -15,13 +15,6 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create favorite" do
-    assert_difference('Favorite.count') do
-      post favorites_url, params: { favorite: {  } }
-    end
-
-    assert_redirected_to favorite_url(Favorite.last)
-  end
 
   test "should show favorite" do
     get favorite_url(@favorite)
@@ -33,10 +26,7 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update favorite" do
-    patch favorite_url(@favorite), params: { favorite: {  } }
-    assert_redirected_to favorite_url(@favorite)
-  end
+  
 
   test "should destroy favorite" do
     assert_difference('Favorite.count', -1) do
