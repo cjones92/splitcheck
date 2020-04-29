@@ -40,7 +40,30 @@
 </p>
 </div>
 
-<br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="comment">
+<table>
+  <thead>
+    <tr>
+      
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+    <% @restaurant.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.comment %></td> 
+      </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+</div>
+
+<%= link_to 'Comment On Restaurant', commenting_path(:restaurant_id => @restaurant) %>
 
 <% if current_user.favorites.where(restaurant_id: params[:id]).size > 0 %>
 You have favorited this restaurant

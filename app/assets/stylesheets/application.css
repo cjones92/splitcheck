@@ -79,7 +79,13 @@
     text-align: right;
     float: right;
    
-    
+  }
+  
+  .comment {
+  
+    text-align: left;
+    float: left;
+  
   }
   
   
