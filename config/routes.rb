@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :favorites
   devise_for :users
   resources :restaurants
   resources :votes
