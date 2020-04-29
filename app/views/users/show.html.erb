@@ -1,0 +1,78 @@
+<h1>User Summary</h1>
+
+<div class="forsplitting">
+<h2>Favorites</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+    <% current_user.favorites.each do |favorite| %>
+      <tr>
+        <td><%= Restaurant.find_by(id: favorite.restaurant_id).name %></td>
+        <td><%= Restaurant.find_by(id: favorite.restaurant_id).location %></td>
+       
+        
+      </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+
+
+<h2>Comments</h2>
+<table>
+  <thead>
+    <tr>
+      
+      <th>Comment</th>
+      <th>Restaurant</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+    <% current_user.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.comment %></td>
+        <td><%= Restaurant.find_by(id: comment.restaurant_id).name %></td>
+       
+        
+      </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+
+<h2>Votes</h2>
+<table>
+  <thead>
+    <tr>
+      
+      <th>Vote</th>
+      <th>Restaurant</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+    <% current_user.votes.each do |vote| %>
+      <tr>
+        <td><%= vote.for_splitting %></td>
+        <td><%= Restaurant.find_by(id: vote.restaurant_id).name %></td>
+       
+        
+      </tr>
+    <% end %>
+   
+  </tbody>
+</table>
+</div>
