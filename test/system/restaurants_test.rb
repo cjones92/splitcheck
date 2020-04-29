@@ -113,5 +113,21 @@ class RestaurantsTest < ApplicationSystemTestCase
     
   
   end
+  
+  test "commenting on a restaurant" do
+    visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "annabanana@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
+    click_on "View and Vote!", match: :first
+    click_on "Comment On Restaurant"
+    fill_in "Comment", with: "This restaurant allows check splitting."
+    click_on "Create Comment"
+    assert_text "Comment was successfully created."
+  
+  
+  end
    
 end
