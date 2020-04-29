@@ -126,6 +126,16 @@ class RestaurantsController < ApplicationController
    end
    helper_method :get_average_votes_for_restaurant
   
+   def favorite_a_restaurant
+    @restaurant = Restaurant.find(params[:id])
+    @user = current_user
+
+    @vote = @restaurant.favorites.create(restaurant_id: @restaurant.id, user_id: @user.id)
+
+    @restaurant.save!
+    redirect_to request.referer
+  
+  end
   
   private
   
