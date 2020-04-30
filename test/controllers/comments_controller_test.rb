@@ -25,7 +25,7 @@ include Devise::Test::IntegrationHelpers
       post comments_url, params: { comment: { comment: @comment.comment, restaurant_id: @restaurant.id, user_id: @user.id } }
     end
 
-    assert_redirected_to comment_url(Comment.last)
+    assert_redirected_to restaurant_url(@restaurant)
   end
 
   test "should show comment" do
