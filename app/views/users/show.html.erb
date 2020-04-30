@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-   link_to @ripple.name, "#{@ripple.url}"
+
     <% current_user.favorites.each do |favorite| %>
       <tr>
         <td><%= link_to Restaurant.find_by(id: favorite.restaurant_id).name, restaurant_url(favorite.restaurant)%></td>
@@ -31,8 +31,10 @@
   <thead>
     <tr>
       
-      <th>Comment</th>
+      
       <th>Restaurant</th>
+      <th>Location</th>
+      <th>Comment</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -41,10 +43,10 @@
    
     <% current_user.comments.each do |comment| %>
       <tr>
-        <td><%= comment.comment %></td>
+        
         <td><%= link_to Restaurant.find_by(id: comment.restaurant_id).name, restaurant_url(comment.restaurant) %></td>
         <td><%= Restaurant.find_by(id: comment.restaurant_id).location %></td>
-       
+        <td><%= comment.comment %></td>       
         
       </tr>
     <% end %>
@@ -57,9 +59,10 @@
   <thead>
     <tr>
       
-      <th>Vote</th>
+      
       <th>Restaurant</th>
       <th>Location</th>
+      <th>Vote</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -68,13 +71,15 @@
    
     <% current_user.votes.each do |vote| %>
       <tr>
+      
+         <td><%= link_to Restaurant.find_by(id: vote.restaurant_id).name, restaurant_url(vote.restaurant) %></td>
+        <td><%= Restaurant.find_by(id: vote.restaurant_id).location %></td>
          <% if vote.for_splitting == true %>
          <td>They split!</td>
          <% else %>
         <td>They don't split!</td>
          <% end %>
-        <td><%= link_to Restaurant.find_by(id: vote.restaurant_id).name, restaurant_url(vote.restaurant) %></td>
-        <td><%= Restaurant.find_by(id: vote.restaurant_id).location %></td>
+        
        
         
       </tr>

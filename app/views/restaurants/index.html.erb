@@ -54,4 +54,5 @@
 <% else %>
    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
    <%= link_to 'New Restaurant', new_restaurant_path %>
+   <%= link_to 'My Summary Page', user_path(current_user) %>
 <% end %>

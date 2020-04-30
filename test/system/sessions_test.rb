@@ -46,6 +46,26 @@ test "registering a user" do
   
   end
   
+  test "viewing user summary page" do
+  
+     visit restaurants_url
+    click_on "Sign Up"
+    fill_in "Email", with: "sallyannalynnel@gmail.com"
+    fill_in "Password", with: "cheeses"
+    fill_in "Password confirmation", with: "cheeses"
+    click_on "Sign Up"
+    click_on "Sign Out"
+    click_on "Sign In"
+    fill_in "Email", with: "sallyannalynnel@gmail.com"
+    fill_in "Password", with: "cheeses"
+    click_on "Log in"
+    click_on "My Summary Page"
+    assert_text "User Summary For sallyannalynnel@gmail.com"
+  
+  
+  
+  end
+  
  
 
 end
