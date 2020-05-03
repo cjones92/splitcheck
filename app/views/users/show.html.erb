@@ -1,3 +1,8 @@
+<%= link_to 'Back', restaurants_path %>
+
+
+
+
 <h1>User Summary For <%= current_user.email %></h1>
 
 <div class="forsplitting">
@@ -7,7 +12,7 @@
     <tr>
       <th>Name</th>
       <th>Location</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -30,8 +35,6 @@
 <table>
   <thead>
     <tr>
-      
-      
       <th>Restaurant</th>
       <th>Location</th>
       <th>Comment</th>
@@ -58,8 +61,6 @@
 <table>
   <thead>
     <tr>
-      
-      
       <th>Restaurant</th>
       <th>Location</th>
       <th>Vote</th>
@@ -71,17 +72,13 @@
    
     <% current_user.votes.each do |vote| %>
       <tr>
-      
          <td><%= link_to Restaurant.find_by(id: vote.restaurant_id).name, restaurant_url(vote.restaurant) %></td>
-        <td><%= Restaurant.find_by(id: vote.restaurant_id).location %></td>
+         <td><%= Restaurant.find_by(id: vote.restaurant_id).location %></td>
          <% if vote.for_splitting == true %>
          <td>They split!</td>
          <% else %>
-        <td>They don't split!</td>
-         <% end %>
-        
-       
-        
+         <td>They don't split!</td>
+         <% end %>  
       </tr>
     <% end %>
    

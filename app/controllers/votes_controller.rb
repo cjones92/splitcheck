@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_user, only: [:edit, :destroy]
+  before_action :redirect_user, only: [:show, :update, :edit, :destroy]
   before_action :authenticate_user!, only: [:create]
 
   # GET /votes

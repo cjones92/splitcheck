@@ -11,9 +11,6 @@ class RestaurantsTest < ApplicationSystemTestCase
   end
   
   
-  
-  
-  
 
   test "creating a Restaurant" do
     visit restaurants_url

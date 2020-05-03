@@ -5,6 +5,7 @@ include Devise::Test::IntegrationHelpers
   setup do
     @restaurants = restaurants
     @restaurant = restaurants(:one)
+    @comment = comments(:one)
      sign_in users(:one)
     @user = users(:one)
    
@@ -26,7 +27,7 @@ include Devise::Test::IntegrationHelpers
       post restaurants_url, params: { restaurant: { location: "Dilbert, OH", name: "Wally's" } }
     end
 
-    assert_redirected_to restaurants_url
+    assert_redirected_to root_path
   end
   
   test "should not create restaurant when logged out" do
@@ -56,7 +57,13 @@ include Devise::Test::IntegrationHelpers
 
   test "should update restaurant when logged in" do
     patch restaurant_url(@restaurant), params: { restaurant: { location: @restaurant.location, name: @restaurant.name } }
-    assert_redirected_to restaurants_url
+    assert_redirected_to root_path
+  end
+  
+  test "should not update restaurant when not logged in" do
+    sign_out @user
+    patch restaurant_url(@restaurant), params: { restaurant: { location: @restaurant.location, name: @restaurant.name } }
+    assert_redirected_to new_user_session_path
   end
   
   
@@ -87,6 +94,20 @@ include Devise::Test::IntegrationHelpers
      
   end
   
+  test "should not add vote for splitting when not logged in" do
+    sign_out @user  
+    get upvote_url(@restaurant, @user.id)
+    assert_response(401)
+    
+  end
+  
+  test "should not add vote for not splitting when not logged in" do
+    sign_out @user  
+    get downvote_url(@restaurant, @user.id)
+    assert_response(401)
+  
+  end
+  
   test "should add vote against splitting" do
   
      get downvote_url(@restaurant, @user.id)
@@ -108,11 +129,47 @@ include Devise::Test::IntegrationHelpers
   
   end
   
-  test "should create favorite for restaurant" do
+  test "should create favorite for restaurant when logged in" do
        get restaurants_url
        get restaurant_url(@restaurant)
        get pick_path(@restaurant.id)
        assert_equal(1, @user.favorites.where(restaurant_id: @restaurant.id).size)
+  
+  end
+  
+  test "should not create favorite for restaurant when not logged in" do
+       sign_out @user
+       get restaurants_url
+       get restaurant_url(@restaurant)
+       get pick_path(@restaurant.id)
+       assert_redirected_to new_user_session_path
+  
+  end
+  
+  test "should comment on restaurant multiple times when logged in" do
+       get restaurants_url
+       get restaurant_url(@restaurant)
+       get commenting_path(@restaurant.id)
+        assert_difference('@restaurant.comments.count') do
+      post comments_url, params: { comment: { comment: @comment.comment, restaurant_id: @restaurant.id, user_id: @user.id } }
+    end
+
+       assert_redirected_to restaurant_url(@restaurant)
+       get restaurant_url(@restaurant)
+       get commenting_path(@restaurant.id)
+       assert_difference('@restaurant.comments.count') do
+      post comments_url, params: { comment: { comment: @comment.comment, restaurant_id: @restaurant.id, user_id: @user.id } }
+    end
+    assert_redirected_to restaurant_url(@restaurant)
+  
+  
+  end
+  
+  test "should not comment on restaurant when not logged in" do
+  
+     get restaurants_url
+     get restaurant_url(@restaurant)
+     get commenting_path(@restaurant.id)
   
   end
   

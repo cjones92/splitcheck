@@ -1,5 +1,8 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
+  
+  before_action :redirect_user, only: [:index, :edit, :show, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
 
   # GET /favorites
   # GET /favorites.json
@@ -70,5 +73,9 @@ class FavoritesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def favorite_params
       params.fetch(:favorite, {})
+    end
+    
+    def redirect_user
+       redirect_to root_path
     end
 end

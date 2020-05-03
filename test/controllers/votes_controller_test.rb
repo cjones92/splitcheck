@@ -37,22 +37,22 @@ include Devise::Test::IntegrationHelpers
     assert_redirected_to new_user_session_path
     end
 
-  test "should show vote" do
+  test "should get redirected to root path when attempt to get show page" do
     get vote_url(@vote)
     assert_redirected_to root_path
   end
 
-  test "should get edit" do
+  test "should be redirected to root path when attempt to get edit" do
     get edit_vote_url(@vote)
     assert_redirected_to root_path
   end
 
   test "should update vote" do
     patch vote_url(@vote), params: { vote: { for_splitting: @vote.for_splitting } }
-   assert_response :success
+   assert_redirected_to root_path
   end
 
-  test "should destroy vote" do
+  test "should not destroy vote" do
     assert_no_difference('Vote.count') do
       delete vote_url(@vote)
       end

@@ -1,13 +1,15 @@
 require 'test_helper'
 
 class FavoritesControllerTest < ActionDispatch::IntegrationTest
+include Devise::Test::IntegrationHelpers
   setup do
     @favorite = favorites(:one)
+    sign_in users(:one)
   end
 
-  test "should get index" do
+  test "should be redirected to root when trying to access index" do
     get favorites_url
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   test "should get new" do
@@ -16,23 +18,23 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-  test "should show favorite" do
+  test "should be redirected to root when trying to access show page" do
     get favorite_url(@favorite)
-    assert_response :success
+    assert_redirected_to root_path
   end
 
-  test "should get edit" do
+  test "should be redirected to root when trying to access edit page" do
     get edit_favorite_url(@favorite)
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   
 
-  test "should destroy favorite" do
-    assert_difference('Favorite.count', -1) do
+  test "should not destroy favorite and should be redirected to root when attempt is made" do
+    assert_no_difference('Favorite.count') do
       delete favorite_url(@favorite)
     end
 
-    assert_redirected_to favorites_url
+    assert_redirected_to root_path
   end
 end

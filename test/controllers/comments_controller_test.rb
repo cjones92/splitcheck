@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
 include Devise::Test::IntegrationHelpers
+
   setup do
     @comment = comments(:one)
     @restaurants = restaurants
@@ -10,9 +11,9 @@ include Devise::Test::IntegrationHelpers
     @user = users(:one)
   end
 
-  test "should get index" do
+  test "should be redirected to root when attempt to get index" do
     get comments_url
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   test "should get new" do
@@ -20,34 +21,43 @@ include Devise::Test::IntegrationHelpers
     assert_response :success
   end
 
-  test "should create comment" do
+  test "should create comment when logged in" do
     assert_difference('Comment.count') do
       post comments_url, params: { comment: { comment: @comment.comment, restaurant_id: @restaurant.id, user_id: @user.id } }
     end
 
     assert_redirected_to restaurant_url(@restaurant)
   end
+  
+  test "should not create comment when not logged in" do
+    sign_out @user
+    assert_no_difference('Comment.count') do
+      post comments_url, params: { comment: { comment: @comment.comment, restaurant_id: @restaurant.id, user_id: @user.id } }
+    end
 
-  test "should show comment" do
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should be redirected to root when try to show comment" do
     get comment_url(@comment)
-    assert_response :success
+    assert_redirected_to root_path
   end
 
-  test "should get edit" do
+  test "should be redirected to root when try to edit comment" do
     get edit_comment_url(@comment)
-    assert_response :success
+    assert_redirected_to root_path
   end
 
-  test "should update comment" do
+  test "should be redirected to root when try to update comment" do
     patch comment_url(@comment), params: { comment: { comment: @comment.comment, restaurant_id: @restaurant.id, user_id: @user.id } }
-    assert_redirected_to comment_url(@comment)
+    assert_redirected_to root_path
   end
 
-  test "should destroy comment" do
-    assert_difference('Comment.count', -1) do
+  test "should not destroy comment" do
+    assert_no_difference('Comment.count') do
       delete comment_url(@comment)
     end
 
-    assert_redirected_to comments_url
+    assert_redirected_to root_path
   end
 end
