@@ -5,17 +5,17 @@ class VotesTest < ApplicationSystemTestCase
     @vote = votes(:one)
   end
 
-  test "visiting the index and getting redirected to restaurants index" do
+  test "visiting the index and getting redirected to the root " do
     visit votes_url
     assert_text "Restaurants"
   end
   
-  test "visiting the edit page and getting redirected to restaurants index" do
+  test "visiting the edit page and getting redirected to the root" do
     visit edit_vote_path(@vote)
     assert_text "Restaurants"
   end
   
-  test "visiting the show page and getting redirected to restaurants index" do
+  test "visiting the show page and getting redirected to the root" do
     visit vote_path(@vote)
     assert_text "Restaurants"
   end
