@@ -5,21 +5,14 @@ class FavoritesTest < ApplicationSystemTestCase
     @favorite = favorites(:one)
   end
 
-  test "visiting the index" do
+  test "visiting the index and being redirected to the root" do
     visit favorites_url
-    assert_selector "h1", text: "Favorites"
+    assert_selector "h1", text: "Restaurants"
   end
-
- 
-
   
-
-  test "destroying a Favorite" do
-    visit favorites_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
-    end
-
-    assert_text "Favorite was successfully destroyed"
+  test "visiting the show page and being redirected to the root" do
+    visit favorite_url(@favorite)
+    assert_selector "h1", text: "Restaurants"
   end
+
 end

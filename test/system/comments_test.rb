@@ -4,16 +4,15 @@ class CommentsTest < ApplicationSystemTestCase
   setup do
     @comment = comments(:one)
   end
-
   
-
-
-  test "destroying a Comment" do
+  test "visiting the index and being redirected to the root" do
     visit comments_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
-    end
-
-    assert_text "Comment was successfully destroyed"
+    assert_selector "h1", text: "Restaurants"
   end
+  
+  test "visiting the show page and being redirected to the root" do
+    visit comment_url(@comment)
+    assert_selector "h1", text: "Restaurants"
+  end
+  
 end
