@@ -53,7 +53,7 @@ include Devise::Test::IntegrationHelpers
     assert_redirected_to root_path
   end
 
-  test "should not destroy comment" do
+  test "should not destroy comment and should be redirected to root when attempt is made" do
     assert_no_difference('Comment.count') do
       delete comment_url(@comment)
     end

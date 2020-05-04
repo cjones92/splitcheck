@@ -9,7 +9,7 @@ include Devise::Test::IntegrationHelpers
     @user = users(:one)
   end
 
-  test "should get index" do
+  test "should be redirected to root when trying to access index" do
     get votes_url
     assert_redirected_to root_path
   end
@@ -52,11 +52,12 @@ include Devise::Test::IntegrationHelpers
    assert_redirected_to root_path
   end
 
-  test "should not destroy vote" do
+  test "should not destroy vote and be redirected to root when attempt is made" do
     assert_no_difference('Vote.count') do
       delete vote_url(@vote)
       end
       
+     assert_redirected_to root_path
     end
 
 end

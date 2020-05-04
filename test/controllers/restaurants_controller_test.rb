@@ -173,5 +173,13 @@ include Devise::Test::IntegrationHelpers
   
   end
   
+  test "should not destroy restaurant and should be redirected to root when attempt is made" do
+    assert_no_difference('Restaurant.count') do
+      delete comment_url(@comment)
+    end
+
+    assert_redirected_to root_path
+  end
+  
   
 end
